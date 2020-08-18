@@ -1,4 +1,4 @@
-package entity;
+package com.example.demo.entity;
 
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -11,7 +11,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
 
     @Column(name = "first_name", nullable = false)
     private String firstname;
@@ -32,6 +32,14 @@ public class Customer {
 
     public String getLastname() {
         return lastname; }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setBalance(long balance) {
         this.balance = balance;
