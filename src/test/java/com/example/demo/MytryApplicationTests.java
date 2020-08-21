@@ -18,17 +18,4 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @SpringBootTest
 class MytryApplicationTests {
 
-
-
-    @Test
-    public void testGetUserById() {
-        long id = 5;
-        Customer user = null;
-        user.setId(id);
-        Assertions.assertEquals(user.getId(),5);
-    }
-
-
-
-
 }

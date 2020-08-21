@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.example.demo.Exceptions.CustomerNotFoundException;
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.CustomerBill;
 import com.example.demo.service.CustomerService;
 import com.example.demo.repository.jpa_data_repository_layer;
 import com.example.demo.service.CustomerService;
@@ -41,6 +42,11 @@ public class CustomerController {
         return customerService.one(id);
     }
 
+    @PostMapping("/{id}")
+    public Customer createBill(@RequestBody CustomerBill customerBill, @PathVariable Long id)
+    {
+        return customerService.saveCustomerBill(customerBill,id);
+    }
     //
     @GetMapping("/{id}/id")
     public Long getCustomerId(@PathVariable Long id ) { return customerService.getCustomerId(id);}

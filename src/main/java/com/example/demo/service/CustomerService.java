@@ -1,19 +1,13 @@
 package com.example.demo.service;
 
-import java.util.List;
-
 import com.example.demo.Exceptions.CustomerNotFoundException;
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.CustomerBill;
 import com.example.demo.repository.jpa_data_repository_layer;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 
@@ -35,6 +29,19 @@ public class CustomerService {
         return repository.save(newCustomer);
     }
 
+    public Customer saveCustomerBill( CustomerBill customerBill ,Long id)
+    {
+        Customer customer = one(id);
+        List<CustomerBill> list = new ArrayList<>();
+        CustomerBill one = new CustomerBill();
+        one.setBalance(customerBill.getBalance());
+        one.setCbNumber(customerBill.getCbNumber());
+        one.setCustomer(customer);
+        list.add(one);
+        customer.setCustomerBills(list);
+        return repository.save(customer);
+        
+    }
 
     public Customer one( Long id){
         return repository.findById(id)
@@ -51,7 +58,6 @@ public class CustomerService {
                 .map(customer -> {
                     customer.setFirstname(newCustomer.getFirstname());
                     customer.setLastname(newCustomer.getLastname());;
-                    customer.setBalance(newCustomer.getBalance());
                     return repository.save(customer);
                 })
                 .orElseGet(() -> {

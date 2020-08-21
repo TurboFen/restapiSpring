@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "customer")
@@ -17,14 +18,12 @@ public class Customer {
     private String firstname;
     @Column(name = "last_name",nullable = false)
     private String lastname;
-    @Column(name = "client_balance",nullable = false)
-    private long balance;
 
+
+
+    @OneToMany(mappedBy = "customer")
+    private List<CustomerBill> customerBills;
     
-
-    public long getBalance() {
-        return balance;
-    }
 
     public String getFirstname() {
         return firstname;
@@ -41,8 +40,12 @@ public class Customer {
         this.id = id;
     }
 
-    public void setBalance(long balance) {
-        this.balance = balance;
+    public List<CustomerBill> getCustomerBills() {
+        return customerBills;
+    }
+
+    public void setCustomerBills(List<CustomerBill> customerBills) {
+        this.customerBills = customerBills;
     }
 
     public void setFirstname(String firstname) {
