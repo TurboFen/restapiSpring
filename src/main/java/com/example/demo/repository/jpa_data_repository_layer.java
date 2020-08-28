@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface jpa_data_repository_layer extends JpaRepository<Customer, Long> {
-    @Query("select c.id from Customer c where c.id=:id")
-    Long getCustomerId(@Param("id") Long id);
 }

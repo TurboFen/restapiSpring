@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ public class CustomerBill {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long BillId;
 
     @Column(name = "cbNumber", nullable = false)
@@ -23,6 +24,7 @@ public class CustomerBill {
 
     @ManyToOne
     @JoinColumn
+    @JsonIgnore
     private Customer customer;
 
     public void setBalance(long balance) {

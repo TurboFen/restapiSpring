@@ -47,10 +47,7 @@ public class CustomerController {
     {
         return customerService.saveCustomerBill(customerBill,id);
     }
-    //
-    @GetMapping("/{id}/id")
-    public Long getCustomerId(@PathVariable Long id ) { return customerService.getCustomerId(id);}
-    //
+
 
     @PutMapping("/{id}")
     public Customer replaceCustomer(@RequestBody Customer newCustomer, @PathVariable Long id) {
@@ -60,4 +57,18 @@ public class CustomerController {
     public void deleteCustomer(@PathVariable Long id){
         customerService.deleteCustomer(id);
     }
+
+    //
+    @DeleteMapping("/{id}/{id}")
+    public void deleteBill(@PathVariable Long id){customerService.DeleteCustomerBill(id);}
+
+    @GetMapping("/{id}/{id}")
+    public CustomerBill getCustomerBill(@PathVariable Long id){return customerService.getCustomerBill(id);}
+
+
+    @PutMapping("/{id}/{id}")
+    public CustomerBill putCustomerBill(@RequestBody CustomerBill customerBill, @PathVariable Long id){
+         return customerService.replaceBill(customerBill,id);
+    }
+
 }

@@ -21,7 +21,7 @@ public class Customer {
 
 
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",cascade = CascadeType.ALL)
     private List<CustomerBill> customerBills;
     
 
